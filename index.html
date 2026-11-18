@@ -32,7 +32,16 @@ button:active{transform:translateY(3px);box-shadow:0 1px 0 #ce8b15}
 #actiongroup{margin-left:auto}
 @media(pointer:coarse){#touch{padding:0 18px 4px;gap:10px}.touch{width:58px;height:52px}.group{gap:8px}}
 @media(max-width:700px){#app{padding:6px;gap:6px}header{gap:6px}#hud{gap:7px;font-size:12px}#hud button{padding:7px 9px;font-size:14px}h1{font-size:clamp(14px,2.4vw,20px)}#frame{max-height:calc(100vh - 92px);border-width:3px}#touch{bottom:10px;padding-left:14px;padding-right:14px}}
-@media(pointer:coarse){#touch{display:grid;grid-template-columns:1fr 1fr;align-items:end;justify-items:stretch;gap:0;padding:0 20px 10px;left:0;right:0;width:100%}#movegroup{grid-column:1;justify-self:start;display:flex;gap:10px}#actiongroup{grid-column:2;justify-self:end;display:flex;gap:10px;margin-left:0}#touch .touch{width:64px;height:58px;font-size:25px}#help{display:none}}
+@media(pointer:coarse){
+#touch{display:grid;grid-template-columns:1fr 1fr;align-items:end;justify-items:stretch;gap:0;padding:0 2.5vw 2vh;left:0;right:0;width:100%;bottom:0}
+#movegroup{grid-column:1;justify-self:start;display:flex;gap:0;align-items:flex-end}
+#actiongroup{grid-column:2;justify-self:end;display:flex;gap:1.2vw;align-items:flex-end;margin-left:0}
+#touch .touch{width:clamp(104px,14vw,220px);height:clamp(105px,34vh,245px);padding:0;border-radius:34% 42% 34% 42%;background:rgba(255,255,255,.075);border:3px solid rgba(255,255,255,.38);color:rgba(255,255,255,.72);font-size:clamp(44px,7.5vw,94px);font-weight:500;line-height:1;backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);box-shadow:0 1px 8px rgba(0,0,0,.08);text-shadow:0 1px 4px rgba(0,0,0,.18);}
+#touch .touch:active{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.7);transform:scale(.97)}
+#actiongroup .touch[data-k="Space"]{width:clamp(116px,17vw,250px);height:clamp(116px,17vw,250px);border-radius:50%;font-size:clamp(48px,7vw,88px)}
+#actiongroup .touch[data-k="KeyX"]{width:clamp(76px,10vw,138px);height:clamp(76px,10vw,138px);border-radius:50%;font-size:clamp(32px,5vw,60px)}
+#help{display:none}
+}
 </style></head>
 <body><div id="app">
 <header><h1>🔴 AVENTURA DA BOLINHA</h1><div id="hud"><span>⭐ <b id="score">0</b>/<span id="maxscore">6</span></span><span>🪙 <b id="coinhud">0</b></span><span>❤️ <b id="lives">3</b></span><span>FASE <b id="level">1</b></span><button id="mapshortcut" title="Mapa dos mundos">🗺️</button><button id="missionshortcut" title="Missões">🎯</button><button id="trophyshortcut" title="Troféus">🏆</button><button id="achbtn" title="Conquistas">🏆</button><button id="soundbtn" title="Som ligado/desligado">🔊</button><button id="menubtn" title="Menu de fases">☰ MENU</button></div></header>
