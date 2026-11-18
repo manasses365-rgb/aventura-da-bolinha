@@ -42,7 +42,12 @@ button:active{transform:translateY(3px);box-shadow:0 1px 0 #ce8b15}
 #actiongroup .touch[data-k="KeyX"]{width:clamp(76px,10vw,138px);height:clamp(76px,10vw,138px);border-radius:50%;font-size:clamp(32px,5vw,60px)}
 #help{display:none}
 }
-</style></head>
+</style><meta name="theme-color" content="#102b40">
+<meta name="description" content="Aventura da Bolinha — jogo de plataforma com fases, desafios e poderes especiais.">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+</head>
 <body><div id="app">
 <header><h1>🔴 AVENTURA DA BOLINHA</h1><div id="hud"><span>⭐ <b id="score">0</b>/<span id="maxscore">6</span></span><span>🪙 <b id="coinhud">0</b></span><span>❤️ <b id="lives">3</b></span><span>FASE <b id="level">1</b></span><button id="mapshortcut" title="Mapa dos mundos">🗺️</button><button id="missionshortcut" title="Missões">🎯</button><button id="trophyshortcut" title="Troféus">🏆</button><button id="achbtn" title="Conquistas">🏆</button><button id="soundbtn" title="Som ligado/desligado">🔊</button><button id="menubtn" title="Menu de fases">☰ MENU</button></div></header>
 <div id="frame"><canvas id="game" width="1100" height="619"></canvas>
@@ -606,4 +611,11 @@ window.addEventListener('keyup',e=>keys[e.code]=false);
 document.querySelectorAll('.touch').forEach(b=>{const k=b.dataset.k;b.addEventListener('pointerdown',e=>{e.preventDefault();keys[k]=true;b.setPointerCapture(e.pointerId)});['pointerup','pointercancel','lostpointercapture'].forEach(ev=>b.addEventListener(ev,()=>keys[k]=false))});
 document.getElementById('start').onclick=start;document.getElementById('openlevels').onclick=menu;document.getElementById('menubtn').onclick=menu;document.getElementById('mapshortcut').onclick=worldMap;document.getElementById('missionshortcut').onclick=missionsMenu;document.getElementById('trophyshortcut').onclick=trophiesMenu;document.getElementById('achbtn').onclick=achievementsMenu;document.getElementById('soundbtn').onclick=()=>{soundOn=!soundOn;document.getElementById('soundbtn').textContent=soundOn?'🔊':'🔇';if(soundOn){if(menuMode||!playing)startMenuMusic();else startMusic(true,'game');sfx('buy')}else stopMusic()};reset();draw();loop();
 })();
-</script></body></html>
+</script><script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.warn('Falha ao registrar service worker:', err));
+  });
+}
+</script>
+</body></html>
