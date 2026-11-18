@@ -27,15 +27,18 @@ canvas{width:100%;height:100%;display:block}
 button{border:0;border-radius:13px;padding:12px 20px;background:linear-gradient(#ffe36a,#ffbd29);color:#523500;font-size:16px;font-weight:950;cursor:pointer;box-shadow:0 4px 0 #ce8b15}
 button:active{transform:translateY(3px);box-shadow:0 1px 0 #ce8b15}
 #help{font-size:12px;opacity:.92;text-align:center}#menubtn{padding:7px 11px;font-size:12px;border-radius:9px;background:linear-gradient(#e7f7ff,#b8e2f4);color:#17334a;box-shadow:0 3px 0 #6ca4bd}button:focus-visible{outline:4px solid #ff7b22;outline-offset:3px}.levelgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.levelgrid button{font-size:14px;padding:12px 8px}.levelgrid button:disabled{opacity:.42;filter:grayscale(1);cursor:not-allowed}.smallnote{font-size:12px;color:#496477;margin-top:12px}
-#touch{display:none;position:absolute;bottom:12px;left:0;right:0;justify-content:space-between;padding:0 14px;pointer-events:none}
-.group{display:flex;gap:9px}.touch{pointer-events:auto;width:60px;height:54px;padding:0;border-radius:15px;background:#ffffffdf;color:#17334a;font-size:23px;touch-action:none}
-@media(pointer:coarse){#touch{display:flex}#help{display:none}}
+#touch{display:none;position:absolute;bottom:12px;left:0;right:0;justify-content:space-between;align-items:flex-end;padding:0 18px;pointer-events:none}
+.group{display:flex;gap:10px;align-items:flex-end}.touch{pointer-events:auto;width:60px;height:54px;padding:0;border-radius:15px;background:#ffffffdf;color:#17334a;font-size:23px;touch-action:none}
+#actiongroup{margin-left:auto}
+@media(pointer:coarse){#touch{padding:0 18px 4px;gap:10px}.touch{width:58px;height:52px}.group{gap:8px}}
+@media(max-width:700px){#app{padding:6px;gap:6px}header{gap:6px}#hud{gap:7px;font-size:12px}#hud button{padding:7px 9px;font-size:14px}h1{font-size:clamp(14px,2.4vw,20px)}#frame{max-height:calc(100vh - 92px);border-width:3px}#touch{bottom:10px;padding-left:14px;padding-right:14px}}
+@media(pointer:coarse){#touch{display:grid;grid-template-columns:1fr 1fr;align-items:end;justify-items:stretch;gap:0;padding:0 20px 10px;left:0;right:0;width:100%}#movegroup{grid-column:1;justify-self:start;display:flex;gap:10px}#actiongroup{grid-column:2;justify-self:end;display:flex;gap:10px;margin-left:0}#touch .touch{width:64px;height:58px;font-size:25px}#help{display:none}}
 </style></head>
 <body><div id="app">
 <header><h1>🔴 AVENTURA DA BOLINHA</h1><div id="hud"><span>⭐ <b id="score">0</b>/<span id="maxscore">6</span></span><span>🪙 <b id="coinhud">0</b></span><span>❤️ <b id="lives">3</b></span><span>FASE <b id="level">1</b></span><button id="mapshortcut" title="Mapa dos mundos">🗺️</button><button id="missionshortcut" title="Missões">🎯</button><button id="trophyshortcut" title="Troféus">🏆</button><button id="achbtn" title="Conquistas">🏆</button><button id="soundbtn" title="Som ligado/desligado">🔊</button><button id="menubtn" title="Menu de fases">☰ MENU</button></div></header>
 <div id="frame"><canvas id="game" width="1100" height="619"></canvas>
 <div id="overlay"><div class="panel titlepanel"><div class="brandball">🔴</div><div class="eyebrow">UMA AVENTURA DE PLATAFORMA</div><h2>AVENTURA<br>DA BOLINHA</h2><p>Explore seis fases, descubra o Templo Dourado, complete missões e conquiste troféus!</p><div class="titlemeta">🎵 TRILHA INSTRUMENTAL <span>•</span> ⭐ 5 MUNDOS + FASE BÔNUS <span>•</span> 🏆 CONQUISTAS</div><button id="start">▶ COMEÇAR A AVENTURA</button><button id="openlevels" style="margin-left:7px">ESCOLHER FASE</button><p class="smallnote">Setas / A-D para andar · Espaço para pular · Shift ou X para impulso</p></div></div>
-<div id="touch"><div class="group"><button class="touch" data-k="ArrowLeft">◀</button><button class="touch" data-k="ArrowRight">▶</button></div><button class="touch" data-k="Space">⬆</button><button class="touch" data-k="KeyX">⚡</button></div>
+<div id="touch"><div class="group" id="movegroup"><button class="touch" data-k="ArrowLeft">◀</button><button class="touch" data-k="ArrowRight">▶</button></div><div class="group" id="actiongroup"><button class="touch" data-k="Space">⬆</button><button class="touch" data-k="KeyX">⚡</button></div></div>
 </div><div id="help">Explore os seis desafios, encontre baús escondidos, colete estrelas e alcance a bandeira de cada fase. Pule duas vezes, use o impulso e salte sobre inimigos e chefes para derrotá-los. Equipe poderes especiais na loja!</div></div>
 <script>
 (()=>{
